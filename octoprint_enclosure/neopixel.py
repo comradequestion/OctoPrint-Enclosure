@@ -1,5 +1,4 @@
 import sys
-import smbus
 import time
 from neopixel import *
 
