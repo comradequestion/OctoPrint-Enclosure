@@ -1,6 +1,6 @@
 import sys
 import time
-from rpi_ws281x.neopixel import *
+from rpi_ws281x.python.neopixel import *
 
 LED_INVERT = False
 LED_DMA = 5
