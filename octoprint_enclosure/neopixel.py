@@ -1,6 +1,11 @@
 import sys
 import smbus
 import time
+from neopixel import *
+
+LED_INVERT = False
+LED_DMA = 5
+LED_FREQ_HZ = 800000
 
 if len(sys.argv) == 8:
     LED_PIN = int(sys.argv[1])
@@ -14,11 +19,17 @@ else:
     print("fail")
     sys.exit(1)
 
-bus = smbus.SMBus(1)
+strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT)
+strip.begin()
 
-data = [LED_PIN,LED_COUNT,LED_BRIGHTNESS,red,green,blue]
+color = Color(green, red, blue)
 
-bus.write_i2c_block_data(address,0, data)
+for i in range(LED_COUNT):
+    strip.setPixelColor(i, color)
+
+strip.show()
+
+
 # bus.write_byte(address, LED_PIN)
 # bus.write_byte(address, LED_COUNT)
 # bus.write_byte(address, LED_BRIGHTNESS)
